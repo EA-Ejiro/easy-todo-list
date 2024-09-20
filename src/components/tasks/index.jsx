@@ -20,10 +20,14 @@ export function Tasks({ tasks, onDelete, onComplete }) {
       </header>
 
       <div className={styles.list}>
-        {tasks.map((task) => (
-          <Task key={task.id} task={task} onDelete={onDelete} onComplete={onComplete} />
-        ))}
+        {tasksQuantity === 0 ? (
+          <p>No tasks available.</p>
+        ) : (
+          tasks.map(task => (
+            <Task key={task.id} task={task} onDelete={onDelete} onComplete={onComplete} />
+          ))
+        )}
       </div>
     </section>
-  )
+  );
 }

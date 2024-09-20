@@ -3,19 +3,19 @@ import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { TbTrash } from 'react-icons/tb';
 
 export function Task({ task, onDelete, onComplete }) {
-  return (
+return (
     <div className={styles.task}>
-      <button className={styles.checkContainer} onClick={() => onComplete(task.id)}>
+    <button className={styles.checkContainer} onClick={() => onComplete(task.id)}>
         {task.isCompleted ? <BsFillCheckCircleFill /> : <div />}
-      </button>
+    </button>
 
-      <p className={task.isCompleted ? styles.textCompleted : ""}>
+    <p className={task.isCompleted ? styles.textCompleted : ""}>
         {task.title}
-      </p>
+    </p>
 
-      <button className={styles.deleteButton} onClick={() => onDelete(task.id)}>
+    <button className={styles.deleteButton} onClick={() => onDelete(task.id)}>
         <TbTrash size={20} />
-      </button>
+    </button>
     </div>
-  )
+)
 }

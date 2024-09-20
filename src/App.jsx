@@ -8,9 +8,13 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   function loadSavedTasks() {
-    const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if(saved) {
-      setTasks(JSON.parse(saved));
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (saved) {
+        setTasks(JSON.parse(saved));
+      }
+    } catch (error) {
+      console.error("Failed to load tasks from localStorage", error);
     }
   }
 
@@ -21,9 +25,10 @@ function App() {
 
   useEffect(() => {
     loadSavedTasks();
-  }, [])
+  }, []);
 
   function addTask(taskTitle) {
+    if (!taskTitle.trim()) return; // Prevent adding empty tasks
     setTasksAndSave([...tasks, {
       id: crypto.randomUUID(),
       title: taskTitle,
@@ -38,11 +43,11 @@ function App() {
 
   function toggleTaskCompletedById(taskId) {
     const newTasks = tasks.map(task => {
-      if(task.id === taskId) {
+      if (task.id === taskId) {
         return {
           ...task,
           isCompleted: !task.isCompleted
-        }
+        };
       }
       return task;
     });
@@ -58,7 +63,7 @@ function App() {
         onComplete={toggleTaskCompletedById}
       />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
