@@ -1,4 +1,4 @@
-import { Task } from '../Task';
+import * as Task from '../task';
 import styles from './tasks.module.css';
 
 export function Tasks({ tasks, onDelete, onComplete }) {
@@ -24,7 +24,7 @@ export function Tasks({ tasks, onDelete, onComplete }) {
           <p>No tasks available.</p>
         ) : (
           tasks.map(task => (
-            <Task key={task.id} task={task} onDelete={onDelete} onComplete={onComplete} />
+            <Task.Task key={task.id} task={task} onDelete={onDelete} onComplete={onComplete} />
           ))
         )}
       </div>
